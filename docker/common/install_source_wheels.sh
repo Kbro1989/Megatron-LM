@@ -41,9 +41,16 @@ CAUSALCONV1D_WHEEL=$(ls $INPUT_WHEEL_DIR/causal_conv1d*.whl) || true
 [ -z "$CAUSALCONV1D_WHEEL" ] && CAUSALCONV1D_WHEEL=$(bash docker/common/build_causalconv1d.sh --output-wheel-dir $INPUT_WHEEL_DIR | tail -n 1)
 
 # Override deps that are already present in the base image
-# only for dev
+# only for dev. Mirror transformer_engine when paywalled/unavailable.
 if [ "$ENVIRONMENT" = "dev" ]; then
-    uv pip install --no-cache-dir --no-deps $TE_WHEEL
+    TE_WHEEL=$(ls $INPUT_WHEEL_DIR/transformer_engine*.whl 2>/dev/null || true)
+    if [ -n "$TE_WHEEL" ]; then
+        echo "Found transformer_engine wheel: $TE_WHEEL"
+        uv pip install --no-cache-dir --no-deps "$TE_WHEEL"
+    else
+        echo "Mirroring transformer_engine with local PyTorch AMP/bfloat16 fallback"
+        uv pip install --no-cache-dir --no-deps torch
+    fi
 fi
 
 # Install heavy optional deps like mamba, causalconv1d

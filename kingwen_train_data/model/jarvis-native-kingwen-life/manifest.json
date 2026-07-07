@@ -1,0 +1,43 @@
+{
+  "name": "jarvis-native-kingwen-life",
+  "version": "0.1.0",
+  "train_jsonl": "kingwen_train_data/combined_pretrain_train.jsonl",
+  "val_jsonl": "kingwen_train_data/combined_pretrain_val.jsonl",
+  "train_bin": "kingwen_train_data/combined_pretrain_train.bin",
+  "train_idx": "kingwen_train_data/combined_pretrain_train.idx",
+  "val_bin": "kingwen_train_data/combined_pretrain_val.bin",
+  "val_idx": "kingwen_train_data/combined_pretrain_val.idx",
+  "tokenizer": "gpt2",
+  "domains": [
+    "kingwen-oracle",
+    "sovereign-pipeline-scene",
+    "openjarvis",
+    "hermes",
+    "pog2",
+    "gemini",
+    "claude"
+  ],
+  "slider_capture_schema": {
+    "voice_weights": ["voiceWeight", "coherence", "chaos", "whimsy", "darkTone"],
+    "yao_vocabulary": ["old_yin", "young_yin", "stable_yin", "old_yao", "new_yao", "stable_yao", "old_yang", "new_yang", "stable_yang"],
+    "phase_temporal": ["past", "present", "future"],
+    "agree_temporal": ["past", "present", "future"],
+    "trajectory": ["still", "converging", "diverging", "cycling"],
+    "porosity_range": [0.0, 1.0],
+    "inject_site_fields": ["primary_pool", "secondary_pool", "porosity", "reason", "porosity_label", "porosity_window"],
+    "cuneiform_basis": "immutable 9-bit ternary state topology",
+    "native_jarvis_runtime": "jsonl → indexed bin/idx → Megatron jsonl dataloader"
+  },
+  "memory_bins": [
+    "C:/Users/krist/.openjarvis/agents.db",
+    "C:/Users/krist/.openjarvis/traces.db",
+    "C:/Users/krist/.openjarvis/knowledge.db",
+    "C:/Users/krist/.openjarvis/digest.db",
+    "C:/Users/krist/.openjarvis/telemetry.db",
+    "C:/Users/krist/.openjarvis/memory.db",
+    "C:/Users/krist/.openjarvis/sync_state.db",
+    "C:/Users/krist/AppData/Local/hermes/state.db",
+    "C:/Users/krist/.pog2-sovereign/memory/memory.db",
+    "C:/Users/krist/.pog2-sovereign/memory/rsmv_cache.db"
+  ]
+}

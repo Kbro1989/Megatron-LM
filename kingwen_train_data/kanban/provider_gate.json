@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Provider gate manifest for Megatron training. Each entry is a capability needed from a provider. If paywalled, the kanban loop mirrors it from available responses.",
+  "blocking_gate": "NVIDIA transformer_engine is paywalled/licensed and not installed in this WSL venv. Mirror every TE-gated path with local PyTorch AMP / bfloat16 before any Megatron training step.",
+  "providers": [
+    {
+      "id": "nvidia_transformer_engine",
+      "name": "NVIDIA Transformer Engine",
+      "paywalled": true,
+      "capabilities": [
+        "fp8_linear",
+        "fp8_amax",
+        "fp8_quantize",
+        "transformer_layer"
+      ],
+      "mirror": {
+        "strategy": "fallback_to_torch_amp",
+        "torch_amp_backend": "autocast",
+        "dtype": "bfloat16",
+        "te_flag_to_mirror": "--transformer-impl transformer_engine",
+        "local_flag": "--transformer-impl local",
+        "note": "Replace Transformer Engine FP8 with PyTorch AMP + bfloat16 on non-Hopper/Blackwell silicon"
+      },
+      "status": "blocked",
+      "blocking_error": "ModuleNotFoundError: No module named 'transformer_engine'"
+    },
+    {
+      "id": "nvidia_cudnn_conv",
+      "name": "NVIDIA cuDNN Conv",
+      "paywalled": false,
+      "capabilities": [
+        "flash_attention"
+      ],
+      "mirror": {
+        "strategy": "native_torch",
+        "torch_backend": "scaled_dot_product_attention",
+        "note": "On CPU/AMD, use torch SDPA with appropriate scaling"
+      },
+      "status": "available"
+    },
+    {
+      "id": "megatron_core_dataset",
+      "name": "Megatron Core Dataset Builder",
+      "paywalled": false,
+      "capabilities": [
+        "indexed_dataset",
+        "blended_dataset_builder"
+      ],
+      "mirror": {
+        "strategy": "native_jsonl_dataset",
+        "fallback": "KingwenDataset with labels",
+        "note": "Implemented in runtime/kingwen_dataset.py"
+      },
+      "status": "implemented"
+    },
+    {
+      "id": "hf_tokenizer_download",
+      "name": "Hugging Face Tokenizer Download",
+      "paywalled": false,
+      "capabilities": [
+        "gpt2_tokenizer"
+      ],
+      "mirror": {
+        "strategy": "local_files_only",
+        "local_path": "model/local-tokenizer/tokenizer.json",
+        "note": "Rebuilt via build_tokenizer_offline.py"
+      },
+      "status": "implemented"
+    },
+    {
+      "id": "cloud_tts",
+      "name": "Cloud TTS Provider",
+      "paywalled": false,
+      "capabilities": [
+        "aura_2_en",
+        "cartesia"
+      ],
+      "mirror": {
+        "strategy": "local_fallback",
+        "local_tts": "pyttsx3/edge-tts",
+        "note": "Voice training uses worker payload only; audio generation deferred"
+      },
+      "status": "mirrored"
+    }
+  ],
+  "mirror_surface": {
+    "exact_replacement_targets": [
+      "megatron/core/models/gpt/gpt_layer_specs.py",
+      "examples/*/pretrain_*.py",
+      "examples/*/train_*.py",
+      "scripts/*.sh",
+      "docker/common/install_source_wheels.sh"
+    ],
+    "skip_targets": [
+      "docs/**",
+      "tests/**"
+    ],
+    "rule": "Replace only runtime provider-gated import/build paths. Do not mirror docs or tests unless asked."
+  }
+}

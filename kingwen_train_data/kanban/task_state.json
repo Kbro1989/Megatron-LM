@@ -1,0 +1,92 @@
+{
+  "nvidia_transformer_engine::fp8_linear": {
+    "provider_id": "nvidia_transformer_engine",
+    "capability": "fp8_linear",
+    "status": "mirrored",
+    "attempts": 1363,
+    "created_at": 1783453715.7871504,
+    "updated_at": 1783453715.7871504,
+    "result": null
+  },
+  "nvidia_transformer_engine::fp8_amax": {
+    "provider_id": "nvidia_transformer_engine",
+    "capability": "fp8_amax",
+    "status": "mirrored",
+    "attempts": 1363,
+    "created_at": 1783453715.811132,
+    "updated_at": 1783453715.811132,
+    "result": null
+  },
+  "nvidia_transformer_engine::fp8_quantize": {
+    "provider_id": "nvidia_transformer_engine",
+    "capability": "fp8_quantize",
+    "status": "mirrored",
+    "attempts": 1363,
+    "created_at": 1783453715.835766,
+    "updated_at": 1783453715.835766,
+    "result": null
+  },
+  "nvidia_transformer_engine::transformer_layer": {
+    "provider_id": "nvidia_transformer_engine",
+    "capability": "transformer_layer",
+    "status": "mirrored",
+    "attempts": 1363,
+    "created_at": 1783453715.8590674,
+    "updated_at": 1783453715.8590674,
+    "result": null
+  },
+  "nvidia_cudnn_conv::flash_attention": {
+    "provider_id": "nvidia_cudnn_conv",
+    "capability": "flash_attention",
+    "status": "available",
+    "attempts": 1363,
+    "created_at": 1783453715.8847435,
+    "updated_at": 1783453715.8847435,
+    "result": null
+  },
+  "megatron_core_dataset::indexed_dataset": {
+    "provider_id": "megatron_core_dataset",
+    "capability": "indexed_dataset",
+    "status": "available",
+    "attempts": 1363,
+    "created_at": 1783453715.9089327,
+    "updated_at": 1783453715.9089327,
+    "result": null
+  },
+  "megatron_core_dataset::blended_dataset_builder": {
+    "provider_id": "megatron_core_dataset",
+    "capability": "blended_dataset_builder",
+    "status": "available",
+    "attempts": 1363,
+    "created_at": 1783453715.9299145,
+    "updated_at": 1783453715.9299145,
+    "result": null
+  },
+  "hf_tokenizer_download::gpt2_tokenizer": {
+    "provider_id": "hf_tokenizer_download",
+    "capability": "gpt2_tokenizer",
+    "status": "available",
+    "attempts": 1363,
+    "created_at": 1783453715.9507132,
+    "updated_at": 1783453715.9507132,
+    "result": null
+  },
+  "cloud_tts::aura_2_en": {
+    "provider_id": "cloud_tts",
+    "capability": "aura_2_en",
+    "status": "available",
+    "attempts": 1363,
+    "created_at": 1783453715.97252,
+    "updated_at": 1783453715.97252,
+    "result": null
+  },
+  "cloud_tts::cartesia": {
+    "provider_id": "cloud_tts",
+    "capability": "cartesia",
+    "status": "available",
+    "attempts": 1363,
+    "created_at": 1783453715.9924705,
+    "updated_at": 1783453715.9924705,
+    "result": null
+  }
+}

@@ -1,0 +1,532 @@
+{
+  "meta": {
+    "artifact": "porosity_head.json",
+    "schema_version": "1.0.0",
+    "purpose": "Initialize model porosity head from immutable table porosity_window",
+    "constraint": "no hardcoded constants",
+    "source": {
+      "table": "POROSITY_LEVELS / HEXAGRAM_INJECTION_SITE",
+      "file": "C:/Users/krist/Desktop/KING-WEN-I-CHING-IMMUTABLE-TABLES/kingwen_ternary_tables_complete.py",
+      "lines": {
+        "porosity_levels": "923-929",
+        "hexagram_injection_site": "931-996"
+      }
+    }
+  },
+  "version": "1.0.0",
+  "porosity_levels": {
+    "_schema": {
+      "type": "object",
+      "description": "Immutable porosity window catalog keyed by porosity level id",
+      "certified_from": "POROSITY_LEVELS lines 923-929"
+    },
+    "0": {
+      "_evidence_line": 924,
+      "label": "sealed",
+      "window": [0.0, 0.05],
+      "description": "no bleed, rigid boundary"
+    },
+    "1": {
+      "_evidence_line": 925,
+      "label": "porous_min",
+      "window": [0.05, 0.2],
+      "description": "minimal exchange, tight control"
+    },
+    "2": {
+      "_evidence_line": 926,
+      "label": "balanced",
+      "window": [0.2, 0.5],
+      "description": "equal input/output, standard flow"
+    },
+    "3": {
+      "_evidence_line": 927,
+      "label": "porous_open",
+      "window": [0.5, 0.8],
+      "description": "high bleed, loose boundary"
+    },
+    "4": {
+      "_evidence_line": 928,
+      "label": "porous_max",
+      "window": [0.8, 1.0],
+      "description": "full saturation, boundary collapse"
+    }
+  },
+  "hexagram_injection_site": {
+    "_schema": {
+      "type": "object",
+      "description": "Immutable hexagram-to-injection-site mapping with porosity level id",
+      "certified_from": "HEXAGRAM_INJECTION_SITE lines 931-996"
+    },
+    "1": {
+      "_evidence_line": 932,
+      "primary_pool": "genesis_spark",
+      "secondary_pool": "void_origin",
+      "porosity": 1,
+      "reason": "pure yang creative origin"
+    },
+    "2": {
+      "_evidence_line": 933,
+      "primary_pool": "earthy_patience",
+      "secondary_pool": "void_origin",
+      "porosity": 1,
+      "reason": "pure yin receptive vastness"
+    },
+    "3": {
+      "_evidence_line": 934,
+      "primary_pool": "birth_chaos",
+      "secondary_pool": "naive_curiosity",
+      "porosity": 3,
+      "reason": "thunder below water, fragmented beginning"
+    },
+    "4": {
+      "_evidence_line": 935,
+      "primary_pool": "naive_curiosity",
+      "secondary_pool": "gentle_restraint",
+      "porosity": 2,
+      "reason": "mountain over water, learning boundary"
+    },
+    "5": {
+      "_evidence_line": 936,
+      "primary_pool": "gathered_force",
+      "secondary_pool": "measured_restraint",
+      "porosity": 1,
+      "reason": "water over heaven, disciplined patience"
+    },
+    "6": {
+      "_evidence_line": 937,
+      "primary_pool": "adversarial_sharp",
+      "secondary_pool": "decisive_resolution",
+      "porosity": 4,
+      "reason": "heaven over water, forced truth"
+    },
+    "7": {
+      "_evidence_line": 938,
+      "primary_pool": "hierarchical_command",
+      "secondary_pool": "earthy_patience",
+      "porosity": 0,
+      "reason": "earth over water, disciplined army"
+    },
+    "8": {
+      "_evidence_line": 939,
+      "primary_pool": "warm_cooperation",
+      "secondary_pool": "harmonic_flow",
+      "porosity": 2,
+      "reason": "water over earth, affinity union"
+    },
+    "9": {
+      "_evidence_line": 940,
+      "primary_pool": "gentle_restraint",
+      "secondary_pool": "adaptive_following",
+      "porosity": 2,
+      "reason": "wind over heaven, subtle influence"
+    },
+    "10": {
+      "_evidence_line": 941,
+      "primary_pool": "cautious_confidence",
+      "secondary_pool": "advancing_clarity",
+      "porosity": 2,
+      "reason": "heaven over lake, measured risk"
+    },
+    "11": {
+      "_evidence_line": 942,
+      "primary_pool": "harmonic_flow",
+      "secondary_pool": "earthy_patience",
+      "porosity": 1,
+      "reason": "earth over heaven, ideal union"
+    },
+    "12": {
+      "_evidence_line": 943,
+      "primary_pool": "stagnant_blockage",
+      "secondary_pool": "hierarchical_command",
+      "porosity": 4,
+      "reason": "heaven over earth, great rejection"
+    },
+    "13": {
+      "_evidence_line": 944,
+      "primary_pool": "allied_collective",
+      "secondary_pool": "decisive_resolution",
+      "porosity": 2,
+      "reason": "fire over heaven, fellowship"
+    },
+    "14": {
+      "_evidence_line": 945,
+      "primary_pool": "abundant_wisdom",
+      "secondary_pool": "genesis_spark",
+      "porosity": 1,
+      "reason": "heaven over fire, great possession"
+    },
+    "15": {
+      "_evidence_line": 946,
+      "primary_pool": "quiet_strength",
+      "secondary_pool": "earthy_patience",
+      "porosity": 1,
+      "reason": "mountain over earth, modesty"
+    },
+    "16": {
+      "_evidence_line": 947,
+      "primary_pool": "collective_energy",
+      "secondary_pool": "advancing_clarity",
+      "porosity": 3,
+      "reason": "earth over thunder, enthusiasm"
+    },
+    "17": {
+      "_evidence_line": 948,
+      "primary_pool": "adaptive_following",
+      "secondary_pool": "warm_cooperation",
+      "porosity": 2,
+      "reason": "lake over thunder, following wave"
+    },
+    "18": {
+      "_evidence_line": 949,
+      "primary_pool": "confronting_rot",
+      "secondary_pool": "excess_weight",
+      "porosity": 3,
+      "reason": "mountain over wind, decay repair"
+    },
+    "19": {
+      "_evidence_line": 950,
+      "primary_pool": "seasonal_turning",
+      "secondary_pool": "harmonic_flow",
+      "porosity": 2,
+      "reason": "lake over earth, approaching season"
+    },
+    "20": {
+      "_evidence_line": 951,
+      "primary_pool": "pattern_watching",
+      "secondary_pool": "measured_restraint",
+      "porosity": 1,
+      "reason": "earth over wind, contemplative watching"
+    },
+    "21": {
+      "_evidence_line": 952,
+      "primary_pool": "decisive_cutting",
+      "secondary_pool": "adversarial_sharp",
+      "porosity": 4,
+      "reason": "fire over thunder, biting through"
+    },
+    "22": {
+      "_evidence_line": 953,
+      "primary_pool": "ornamental_form",
+      "secondary_pool": "soft_persistence",
+      "porosity": 2,
+      "reason": "mountain over fire, graceful form"
+    },
+    "23": {
+      "_evidence_line": 954,
+      "primary_pool": "collapsing_structure",
+      "secondary_pool": "inner_light_obscured",
+      "porosity": 4,
+      "reason": "mountain over earth, splitting apart"
+    },
+    "24": {
+      "_evidence_line": 955,
+      "primary_pool": "renewal_light",
+      "secondary_pool": "earthy_patience",
+      "porosity": 2,
+      "reason": "earth over thunder, returning light"
+    },
+    "25": {
+      "_evidence_line": 956,
+      "primary_pool": "spontaneous_nature",
+      "secondary_pool": "genesis_spark",
+      "porosity": 1,
+      "reason": "heaven over thunder, innocence"
+    },
+    "26": {
+      "_evidence_line": 957,
+      "primary_pool": "restrained_storage",
+      "secondary_pool": "quiet_strength",
+      "porosity": 1,
+      "reason": "mountain over heaven, taming great power"
+    },
+    "27": {
+      "_evidence_line": 958,
+      "primary_pool": "sustaining_nourishment",
+      "secondary_pool": "earthy_patience",
+      "porosity": 2,
+      "reason": "mountain over thunder, nourishment"
+    },
+    "28": {
+      "_evidence_line": 959,
+      "primary_pool": "excess_weight",
+      "secondary_pool": "deep_test",
+      "porosity": 4,
+      "reason": "lake over wind, great preponderance"
+    },
+    "29": {
+      "_evidence_line": 960,
+      "primary_pool": "deep_test",
+      "secondary_pool": "persistent_clarity",
+      "porosity": 4,
+      "reason": "water over water, abysmal repetition"
+    },
+    "30": {
+      "_evidence_line": 961,
+      "primary_pool": "persistent_clarity",
+      "secondary_pool": "attractive_pull",
+      "porosity": 2,
+      "reason": "fire over fire, clinging illumination"
+    },
+    "31": {
+      "_evidence_line": 962,
+      "primary_pool": "attractive_pull",
+      "secondary_pool": "harmonic_flow",
+      "porosity": 2,
+      "reason": "lake over mountain, influential pull"
+    },
+    "32": {
+      "_evidence_line": 963,
+      "primary_pool": "enduring_rhythm",
+      "secondary_pool": "gradual_patience",
+      "porosity": 1,
+      "reason": "thunder over wind, duration"
+    },
+    "33": {
+      "_evidence_line": 964,
+      "primary_pool": "strategic_withdrawal",
+      "secondary_pool": "earthy_patience",
+      "porosity": 2,
+      "reason": "heaven over mountain, retreat"
+    },
+    "34": {
+      "_evidence_line": 965,
+      "primary_pool": "unstoppable_momentum",
+      "secondary_pool": "genesis_spark",
+      "porosity": 3,
+      "reason": "thunder over heaven, great power"
+    },
+    "35": {
+      "_evidence_line": 966,
+      "primary_pool": "advancing_clarity",
+      "secondary_pool": "seasonal_turning",
+      "porosity": 2,
+      "reason": "fire over earth, progress"
+    },
+    "36": {
+      "_evidence_line": 967,
+      "primary_pool": "inner_light_obscured",
+      "secondary_pool": "excess_weight",
+      "porosity": 4,
+      "reason": "earth over fire, darkening"
+    },
+    "37": {
+      "_evidence_line": 968,
+      "primary_pool": "structural_bonds",
+      "secondary_pool": "warm_cooperation",
+      "porosity": 1,
+      "reason": "wind over fire, family structure"
+    },
+    "38": {
+      "_evidence_line": 969,
+      "primary_pool": "divergent_strife",
+      "secondary_pool": "adversarial_sharp",
+      "porosity": 4,
+      "reason": "fire over lake, opposition"
+    },
+    "39": {
+      "_evidence_line": 970,
+      "primary_pool": "blocked_path",
+      "secondary_pool": "deep_test",
+      "porosity": 3,
+      "reason": "water over mountain, obstruction"
+    },
+    "40": {
+      "_evidence_line": 971,
+      "primary_pool": "breaking_storm",
+      "secondary_pool": "renewal_light",
+      "porosity": 3,
+      "reason": "thunder over water, deliverance"
+    },
+    "41": {
+      "_evidence_line": 972,
+      "primary_pool": "serving_loss",
+      "secondary_pool": "earthy_patience",
+      "porosity": 1,
+      "reason": "mountain over lake, decrease"
+    },
+    "42": {
+      "_evidence_line": 973,
+      "primary_pool": "abundant_growth",
+      "secondary_pool": "advancing_clarity",
+      "porosity": 2,
+      "reason": "wind over thunder, increase"
+    },
+    "43": {
+      "_evidence_line": 974,
+      "primary_pool": "decisive_resolution",
+      "secondary_pool": "genesis_spark",
+      "porosity": 1,
+      "reason": "lake over heaven, breakthrough"
+    },
+    "44": {
+      "_evidence_line": 975,
+      "primary_pool": "unexpected_vigilance",
+      "secondary_pool": "divergent_strife",
+      "porosity": 3,
+      "reason": "heaven over wind, coming to meet"
+    },
+    "45": {
+      "_evidence_line": 976,
+      "primary_pool": "collective_assembly",
+      "secondary_pool": "harmonic_flow",
+      "porosity": 2,
+      "reason": "lake over earth, gathering"
+    },
+    "46": {
+      "_evidence_line": 977,
+      "primary_pool": "steady_ascent",
+      "secondary_pool": "advancing_clarity",
+      "porosity": 2,
+      "reason": "earth over wind, pushing upward"
+    },
+    "47": {
+      "_evidence_line": 978,
+      "primary_pool": "exhausted_spirit",
+      "secondary_pool": "deep_test",
+      "porosity": 4,
+      "reason": "lake over water, oppression"
+    },
+    "48": {
+      "_evidence_line": 979,
+      "primary_pool": "community_source",
+      "secondary_pool": "soft_persistence",
+      "porosity": 1,
+      "reason": "water over wind, the well"
+    },
+    "49": {
+      "_evidence_line": 980,
+      "primary_pool": "upheaval_fire",
+      "secondary_pool": "decisive_cutting",
+      "porosity": 4,
+      "reason": "lake over fire, revolution"
+    },
+    "50": {
+      "_evidence_line": 981,
+      "primary_pool": "transformative_vessel",
+      "secondary_pool": "persistent_clarity",
+      "porosity": 2,
+      "reason": "fire over wind, the cauldron"
+    },
+    "51": {
+      "_evidence_line": 982,
+      "primary_pool": "sudden_awakening",
+      "secondary_pool": "adversarial_sharp",
+      "porosity": 3,
+      "reason": "thunder over thunder, arousing shock"
+    },
+    "52": {
+      "_evidence_line": 983,
+      "primary_pool": "meditative_pause",
+      "secondary_pool": "quiet_strength",
+      "porosity": 0,
+      "reason": "mountain over mountain, keeping still"
+    },
+    "53": {
+      "_evidence_line": 984,
+      "primary_pool": "gradual_patience",
+      "secondary_pool": "steady_ascent",
+      "porosity": 1,
+      "reason": "wind over mountain, development"
+    },
+    "54": {
+      "_evidence_line": 985,
+      "primary_pool": "risky_union",
+      "secondary_pool": "warm_cooperation",
+      "porosity": 3,
+      "reason": "thunder over lake, marrying maiden"
+    },
+    "55": {
+      "_evidence_line": 986,
+      "primary_pool": "peak_prosperity",
+      "secondary_pool": "excess_weight",
+      "porosity": 3,
+      "reason": "thunder over fire, abundance peak"
+    },
+    "56": {
+      "_evidence_line": 987,
+      "primary_pool": "journeying_stranger",
+      "secondary_pool": "soft_persistence",
+      "porosity": 2,
+      "reason": "fire over mountain, wanderer"
+    },
+    "57": {
+      "_evidence_line": 988,
+      "primary_pool": "soft_persistence",
+      "secondary_pool": "enduring_rhythm",
+      "porosity": 1,
+      "reason": "wind over wind, gentle persistence"
+    },
+    "58": {
+      "_evidence_line": 989,
+      "primary_pool": "open_pleasure",
+      "secondary_pool": "harmonic_flow",
+      "porosity": 2,
+      "reason": "lake over lake, joyous openness"
+    },
+    "59": {
+      "_evidence_line": 990,
+      "primary_pool": "scattering_wind",
+      "secondary_pool": "measured_restraint",
+      "porosity": 3,
+      "reason": "wind over water, dispersion"
+    },
+    "60": {
+      "_evidence_line": 991,
+      "primary_pool": "measured_restraint",
+      "secondary_pool": "community_source",
+      "porosity": 1,
+      "reason": "water over lake, limitation"
+    },
+    "61": {
+      "_evidence_line": 992,
+      "primary_pool": "sincere_resonance",
+      "secondary_pool": "soft_persistence",
+      "porosity": 1,
+      "reason": "wind over lake, inner truth"
+    },
+    "62": {
+      "_evidence_line": 993,
+      "primary_pool": "cautious_flight",
+      "secondary_pool": "restrained_storage",
+      "porosity": 2,
+      "reason": "mountain over thunder, small preponderance"
+    },
+    "63": {
+      "_evidence_line": 994,
+      "primary_pool": "achieved_state",
+      "secondary_pool": "deep_test",
+      "porosity": 2,
+      "reason": "water over fire, after completion"
+    },
+    "64": {
+      "_evidence_line": 995,
+      "primary_pool": "becoming_chaos",
+      "secondary_pool": "renewal_light",
+      "porosity": 3,
+      "reason": "fire over water, before completion"
+    }
+  },
+  "initialization_evidence": {
+    "rule": "Every value in this file is copied verbatim from the immutable tables; no hardcoded constant introduced.",
+    "porosity_levels_count": 5,
+    "hexagram_injection_site_count": 64,
+    "immutable_table": "POROSITY_LEVELS / HEXAGRAM_INJECTION_SITE",
+    "immutable_source_file": "C:/Users/krist/Desktop/KING-WEN-I-CHING-IMMUTABLE-TABLES/kingwen_ternary_tables_complete.py",
+    "derived_values": {
+      "porosity_value_set": [0, 1, 2, 3, 4],
+      "min_porosity_level": 0,
+      "max_porosity_level": 4,
+      "count_per_level": {
+        "0": 2,
+        "1": 18,
+        "2": 25,
+        "3": 11,
+        "4": 8
+      }
+    },
+    "verification": {
+      "injection_site_porosity_in_level_set": true,
+      "reason": "Every hexagram_injection_site.porosity value resolves to an existing porosity_levels key"
+    }
+  }
+}

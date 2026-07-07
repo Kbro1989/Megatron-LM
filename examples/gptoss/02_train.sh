@@ -124,7 +124,7 @@ LR_DECAY_SAMPLES=1949218748
 
 MODEL_ARGS=(
     --no-masked-softmax-fusion
-    --transformer-impl transformer_engine
+    --transformer-impl local
     --disable-bias-linear
     --untie-embeddings-and-output-weights
     --no-rope-fusion
@@ -224,12 +224,8 @@ MODEL_PARALLEL_ARGS=(
     --sequence-parallel
     --context-parallel-size 1
     --use-distributed-optimizer
-    --fp8-format hybrid
-    --fp8-param-gather
-    --fp8-amax-compute-algo max
-    --fp8-amax-history-len 1024
 )
-    
+
 LOGGING_ARGS=(
     --log-interval 1
     --save-interval 10000

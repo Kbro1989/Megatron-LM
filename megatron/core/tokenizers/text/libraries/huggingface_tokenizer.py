@@ -1,6 +1,7 @@
 # Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved.
 
 import logging
+import os
 from typing import List, Optional
 
 try:
@@ -9,6 +10,7 @@ try:
     HAVE_TRANSFORMERS = True
 except ModuleNotFoundError:
     HAVE_TRANSFORMERS = False
+    AutoTokenizer = None
 
 from megatron.core.utils import log_single_rank
 
@@ -64,34 +66,40 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
                 tokens / prompt tokens (if any), yielding self.tokenizer(text).input_ids
         """
 
+
+        use_fast_tokenizer = bool(use_fast)
+        if vocab_file is None and isinstance(tokenizer_path, str) and os.path.isfile(tokenizer_path):
+            use_fast_tokenizer = True
+
         try:
-            # this logic deals with different huggingface tokenizers having different args
-            if vocab_file is None:
+            if HAVE_TRANSFORMERS and use_fast_tokenizer:
+                try:
+                    from transformers import PreTrainedTokenizerFast
+                except ImportError:
+                    PreTrainedTokenizerFast = None
+                else:
+                    candidate_path = tokenizer_path
+                    if isinstance(candidate_path, str) and os.path.isdir(candidate_path):
+                        for candidate_name in ("tokenizer.json", "tokenizer"):
+                            if os.path.isfile(os.path.join(candidate_path, candidate_name)):
+                                candidate_path = os.path.join(candidate_path, candidate_name)
+                                break
+                    if os.path.isfile(candidate_path):
+                        self.tokenizer = PreTrainedTokenizerFast(
+                            tokenizer_file=candidate_path,
+                            trust_remote_code=trust_remote_code,
+                        )
+            if not hasattr(self, "tokenizer") and AutoTokenizer is not None:
                 self.tokenizer = AutoTokenizer.from_pretrained(
                     pretrained_model_name_or_path=tokenizer_path,
-                    use_fast=use_fast,
-                    trust_remote_code=trust_remote_code,
-                )
-            elif merges_file is None:
-                self.tokenizer = AutoTokenizer.from_pretrained(
-                    pretrained_model_name_or_path=tokenizer_path,
-                    vocab_file=vocab_file,
-                    use_fast=use_fast,
-                    trust_remote_code=trust_remote_code,
-                )
-            else:
-                self.tokenizer = AutoTokenizer.from_pretrained(
-                    pretrained_model_name_or_path=tokenizer_path,
-                    vocab_file=vocab_file,
-                    merges_file=merges_file,
                     use_fast=use_fast,
                     trust_remote_code=trust_remote_code,
                 )
         except Exception as e:
             raise ValueError(
-                'Unable to instantiate HuggingFace AutoTokenizer '
+                'Unable to instantiate HuggingFace tokenizer '
                 f'for {tokenizer_path}. Exception: {e}'
-            )
+            ) from e
 
         # Store the tokenizer's existing chat template if the user does not provide
         # a custom chat template. Otherwise, override the default chat template with

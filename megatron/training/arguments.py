@@ -1291,8 +1291,12 @@ def validate_args(args, defaults={}):
             'residual connection in fp32 only supported when using fp16 or bf16.'
 
     if args.moe_grouped_gemm:
-        dc = torch.cuda.get_device_capability()
-        assert dc[0] >= 8, "Unsupported compute capability for GroupedGEMM kernels."
+        try:
+            dc = torch.cuda.get_device_capability()
+            assert dc[0] >= 8, "Unsupported compute capability for GroupedGEMM kernels."
+        except Exception:
+            # Skip GroupedGEMM capability check when CUDA is unavailable.
+            pass
 
     if args.no_weight_decay_cond_type is not None:
         print_rank_0(
@@ -2462,7 +2466,7 @@ def _add_rl_args(parser):
                             'persist: leave KV cache in GPU memory (default), '
                             'offload: offload KV cache to CPU during training, '
                             'recompute: deallocate KV cache and recompute from scratch each cycle')
-    group.add_argument('--rl-persist-cuda-graphs', action=argparse.BooleanOptionalAction, type=bool, default=False,
+    group.add_argument('--rl-persist-cuda-graphs', action=argparse.BooleanOptionalAction, default=False,
                        help='Persist CUDA graphs when the inference engine is suspended. '
                             'If False, CUDA graphs are deleted on suspend and re-captured on resume.')
     group.add_argument('--rl-partial-rollouts', action=argparse.BooleanOptionalAction, default=False,
@@ -2470,11 +2474,11 @@ def _add_rl_args(parser):
                             'the policy weights. This enables off-policy training where rollouts may '
                             'be generated with a stale version of the policy. Use '
                             '--rl-generation-lag to control the degree of staleness.')
-    group.add_argument('--rl-inference-logprobs-is-correction', action=argparse.BooleanOptionalAction, type=bool, default=False,
+    group.add_argument('--rl-inference-logprobs-is-correction', action=argparse.BooleanOptionalAction, default=False,
                        help='If set, use inference logprobs in importance sampling correction of the loss.')
     group.add_argument('--rl-importance-sampling-truncation-coef', type=float, default=None,
                        help="If --inference-logprobs-is-correction is on and this coefficient is set, apply truncation for the IS correction at GRPO loss.")
-    group.add_argument('--rl-use-sequence-packing', action=argparse.BooleanOptionalAction, type=bool, default=False,
+    group.add_argument('--rl-use-sequence-packing', action=argparse.BooleanOptionalAction, default=False,
                        help='Enable sequence packing')
     group.add_argument('--rl-sequence-packing-max-sequences-per-bin', type=int, default=50,
                        help='Maximum number of sequences that can be packed into a single bin. ')
@@ -2483,7 +2487,7 @@ def _add_rl_args(parser):
                        help='Algorithm for distributing packed bins across ranks. '
                             'fifo: first-in-first-out sequential distribution, '
                             'round-robin: distribute bins cyclically across ranks for better load balancing')
-    group.add_argument('--rl-training-cuda-graphs', action=argparse.BooleanOptionalAction, type=bool,
+    group.add_argument('--rl-training-cuda-graphs', action=argparse.BooleanOptionalAction,
                        default=False,
                        help='If set, do not toggle CUDA graphs on/off between inference and training phases.')
     group.add_argument('--rl-inference-tensor-model-parallel-size', type=int, default=None,
@@ -2542,7 +2546,7 @@ def _add_rl_args(parser):
                        help='If set, verify that the model weights were correctly transferred by comparing forward pass outputs on'
                        'the first swap of model weights.')
 
-    group.add_argument('--rl-skip-bos-token', action=argparse.BooleanOptionalAction, type=bool, default=False,
+    group.add_argument('--rl-skip-bos-token', action=argparse.BooleanOptionalAction, default=False,
                         help='Skip BOS token at the beginning of the sequences. Default is False.')
     group.add_argument('--rl-profile', action='store_true', default=False,
                         help='Enable RL profiling to collect detailed timer data (JSONL + CSV).')

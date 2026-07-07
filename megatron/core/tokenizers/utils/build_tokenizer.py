@@ -67,6 +67,7 @@ def build_tokenizer(args, **kwargs):
     elif args.tokenizer_type == 'HuggingFaceTokenizer':
         tokenizer_library = 'huggingface'
         tokenizer_path = args.tokenizer_model
+        print('[KW-DEBUG] build_tokenizer HuggingFace enter flush', flush=True)
         kwargs['chat_template'] = args.chat_template
         kwargs['vocab_file'] = args.vocab_file
         kwargs['merges_file'] = args.merge_file
